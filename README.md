@@ -4,7 +4,7 @@ Allow a file to be decrypted when and only when you die.
 
 ## Project Status
 
-Under heavy development, no backward compatibility is guaranteed. Please use the same version for encryption & decryption.
+Under heavy development, no backward compatibility is guaranteed. Please use the same version for encryption & decryption. Do not use in production.
 
 ## Design
 

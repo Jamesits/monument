@@ -45,7 +45,7 @@ func printHelpHeader() {
 
 func subCommandDoNotMatch() {
 	printHelpHeader()
-	fmt.Fprintf(os.Stderr,"Available subcommands: \n\tencrypt\n\tdecrypt\n")
+	fmt.Fprintf(os.Stderr, "Available subcommands: \n\tencrypt\n\tdecrypt\n")
 }
 
 func doEncryption() {
@@ -82,6 +82,8 @@ func doEncryption() {
 
 	initMonument(&m)
 
+	log.Printf("\nWill generate %d keys, %d for distribution and %d for death switch\nAllow decryption at %d keys or %d people\n", m.totalShares, m.totalPeople, m.deadSwitchShares, m.minimalShares, m.minimalPeople)
+
 	// encrypt file
 	// TODO: support stdin
 	encryptionFileReader, err := os.Open(*encryptionFilePath)
@@ -91,7 +93,7 @@ func doEncryption() {
 	}
 	defer encryptionFileReader.Close()
 
-	encryptionFileWriter, err := os.Create(path.Join(publicDirPath, filepath.Base(*encryptionFilePath) + ".gpg"))
+	encryptionFileWriter, err := os.Create(path.Join(publicDirPath, filepath.Base(*encryptionFilePath)+".gpg"))
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -120,7 +122,7 @@ func doEncryption() {
 
 	_, err = fmt.Fprintf(sharesForDeathSwitch, "Put all the following lines into a \"dead man's switch\" service: \n\n")
 	hardFailIf(err)
-	for _, share := range m.shamirShares[0:m.deadSwitchShares - 1] {
+	for _, share := range m.shamirShares[0 : m.deadSwitchShares-1] {
 		_, err = fmt.Fprintln(sharesForDeathSwitch, share)
 		hardFailIf(err)
 	}
@@ -189,7 +191,7 @@ func doDecryption() {
 				// invalid share
 				_, err = fmt.Fprintln(os.Stderr, "Last key is invalid")
 				hardFailIf(err)
-				collectedShares = collectedShares[0:len(collectedShares) - 2]
+				collectedShares = collectedShares[0 : len(collectedShares)-2]
 			}
 
 			if strings.Contains(privateKeyBuffer, "BEGIN PGP PRIVATE KEY BLOCK") {

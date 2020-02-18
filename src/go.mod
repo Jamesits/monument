@@ -1,6 +1,8 @@
-module github.com/Jamesits/LastWordsVault
+module github.com/Jamesits/monument
 
 go 1.13
+
+replace golang.org/x/crypto => github.com/ProtonMail/crypto v0.0.0-20191122234321-e77a1f03baa0
 
 require (
 	github.com/SSSaaS/sssa-golang v0.0.0-20170502204618-d37d7782d752

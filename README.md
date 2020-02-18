@@ -35,14 +35,14 @@ All the files required for decryption will be put into `out` directory. You need
 * Publish `public/secret-message.txt.gpg` to a place where it will be available even if you die
 * Put the content of `secret/shares_for_death_switch.txt` to your DMS service
 * Hand out the keys in `secret/shares_for_people.txt`, one key per person
-* Delete your original `secret-message.txt` file
+* Delete your original `secret-message.txt` file and all the keys in `secret/*`
 
 ### Decryption phase
 
 First download the encrypted `secret-message.txt.gpg`. Then run monument to start the decryption phase:
 
 ```shell
-monument decrypt  --file secret-message.txt.gpg
+monument decrypt --file secret-message.txt.gpg
 ```
 
 Monument will then ask you for the keys you gathered. Paste one key per line. If the keys are correct, the secret will be revealed.
